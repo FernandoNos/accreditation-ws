@@ -4,7 +4,6 @@ import io.test.accreditation.controllers.dto.UserAccreditationRequestDTO;
 import io.test.accreditation.controllers.dto.UserAccreditationRequestPayloadDTO;
 import io.test.accreditation.controllers.dto.UserAccreditationRequestPayloadDocumentDTO;
 import io.test.accreditation.enums.AccreditationType;
-import io.test.accreditation.exceptions.InvalidNumberOfDocumentsException;
 import io.test.accreditation.models.UserAccreditationRequest;
 import io.test.accreditation.models.UserAccreditationRequestPayload;
 import io.test.accreditation.models.UserAccreditationRequestPayloadDocument;
@@ -53,15 +52,6 @@ public class UserAccreditationAdapterImplTest {
         Assertions.assertTrue(result.getSuccess());
     }
 
-    @Test
-    public void shoudThrowException_whenUserAccreditationServiceThrowsException(){
-
-        Assertions.assertThrows(InvalidNumberOfDocumentsException.class, () -> {
-            var request = createValidRequestDTO();
-            Mockito.when(userAccreditationService.processUserAccreditation(any(UserAccreditationRequest.class))).thenThrow(new InvalidNumberOfDocumentsException());
-            this.userAccreditationAdapter.processAccreditationRequest(request).block();
-        });
-    }
 
     private UserAccreditationRequestDTO createValidRequestDTO() {
         return new UserAccreditationRequestDTO("123", new UserAccreditationRequestPayloadDTO(
