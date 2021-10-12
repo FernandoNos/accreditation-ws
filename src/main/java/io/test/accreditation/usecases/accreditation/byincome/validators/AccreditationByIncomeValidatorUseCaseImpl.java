@@ -1,6 +1,5 @@
 package io.test.accreditation.usecases.accreditation.byincome.validators;
 
-import io.test.accreditation.exceptions.InvalidNumberOfDocumentsException;
 import io.test.accreditation.models.UserAccreditationRequest;
 import io.test.accreditation.models.UserAccreditationRequestPayloadDocument;
 import org.slf4j.Logger;
